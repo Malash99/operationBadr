@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  odometry-trainer:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ROS_MASTER_URI=http://localhost:11311
+    working_dir: /app
+    command: tail -f /dev/null  # Keep container running
